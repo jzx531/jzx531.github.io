@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>COA_review.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="centercoa-review"><center>COA review</h1>
+<center>04021503 jzx</center>
+<center>
+<p><img src="uav.png" alt="pic"></p>
+</center>
+<!-- ![PIC](2023-12-26-21-23-14.png) -->
+<h2 id="%E7%9B%AE%E5%BD%95">目录</h2>
+<p>[TOC]</p>
+<h2 id="%E7%AC%AC%E4%B8%80%E7%AB%A0-basic-conceptions">第一章 BASIC CONCEPTIONS</h2>
+<ul>
+<li><input type="checkbox" id="checkbox0"><label for="checkbox0">已复习</label></li>
+</ul>
+<p><mark><big><strong>  Computer architecture</mark></big></strong>: refers to those attributes that have a direct impact on the logical execution of a program.</p>
+<blockquote>
+<p>计算机体系结构是指程序员可见的那些属性，换句话说，是直接影响程序执行逻辑的那些属性。</p>
+</blockquote>
+<p><mark><big><strong>  Computer organization</mark></big></strong>: refers to the operational units and their interconnections that realize the architectural specifications.</p>
+<blockquote>
+<p>计算机组成是指用于实现体系结构规范的操作单元及其互联。</p>
+</blockquote>
+<p><mark><big><strong>A hierarchical system</mark></big></strong> is a set of interrelated subsystems，each of the latter， in term，hierarchical in structure until we reach some lowest level of elementary subsystem.</p>
+<blockquote>
+<p>层次化系统是一组相互关联的子系统，每个子系统在结构上也是层次化的，直到到达基本子系统的最底层。</p>
+</blockquote>
+<p>Function：</p>
+<ul>
+<li>Data processing（数据处理）</li>
+<li>Data storage（数据存储）</li>
+<li>Data movement（数据移动）</li>
+<li>Control（控制）</li>
+</ul>
+<p>Structure：
+<img src="./2023-12-29-23-36-56.png" width = "630" height = "630" alt="图片名称" align=center /></p>
+<p><img src="2024-01-03-22-56-05.png" alt=""></p>
+<p><strong>Interrupt cycle</strong></p>
+<ul>
+<li>Added to instruction cycle</li>
+<li>If no interrupt: Fetch next instruction</li>
+<li>If interrupt pending:</li>
+</ul>
+<pre class="hljs"><code><div>    — Suspend execution of current program and save its context
+    — Set PC to start address of interrupt handler routine
+    — Process interrupt
+    — Restore context and continue interrupted program
+</div></code></pre>
+<h2 id="%E7%AC%AC%E4%B8%89%E7%AB%A0-a-top-level-view-of-computer-function-and-interconnection">第三章 A Top-level View of Computer Function And Interconnection</h2>
+<ul>
+<li><input type="checkbox" id="checkbox1"><label for="checkbox1">已复习</label></li>
+</ul>
+<p>指令周期：<br>
+<img src="2023-12-29-23-41-43.png" alt=""></p>
+<h3 id="locality-of-reference">Locality of reference</h3>
+<p>Locality of reference:</p>
+<ul>
+<li>Memory reference tends to cluster</li>
+<li>Possible to organize data such that the percentage of accesses to each level is substantially less than the above level:
+——level 2:all program instructions and data.
+——level 1:current clusters.</li>
+</ul>
+<p><mark><big>The reasons for using the principle of locality</big><mark></p>
+<blockquote>
+<p>a. Program execution is sequential at the most time
+b. A program remains confined to a rather narrow window of procedure-invocation depth
+c. Most iterative constructs consist of a relatively small number of instructions repeated many times
+d. Successive references to these array data structures will be to closely located data items</p>
+</blockquote>
+<h2 id="%E7%AC%AC%E5%9B%9B%E7%AB%A0-cache-memory">第四章 Cache Memory</h2>
+<ul>
+<li><input type="checkbox" id="checkbox2"><label for="checkbox2">已复习</label></li>
+</ul>
+<h3 id="41-access-method">4.1 access method</h3>
+<ul>
+<li><mark><strong>Sequential access</strong></mark>：Memory is organized into units of data,called records. Access must be made in a specific linear sequence. Stored addressing information is used to separate records and assist in the retrieval process.<strong>must be moved from its current location to the desired location, passing and rejecting each intermediate record.</strong></li>
+<li><mark><strong>Direct access</strong></mark>:<strong>Access is accomplished by direct access to reach a general vicinity plus sequential searching,counting ,or waiting to reach the final location</strong></li>
+<li><mark><strong>Random access</strong></mark>:<strong>the time to access a given location is independent of the sequence of prior accesses and is constant.Thus any location can be selected at random and directly addressed and accessed</strong></li>
+<li><mark><strong>Associative</strong></mark>:<strong>Data is located by a comparison with contents of a portion of the store,Access time is independent of location or previous access</strong></li>
+</ul>
+<h3 id="42-memory-hierarchy">4.2 memory Hierarchy</h3>
+<blockquote>
+<p>Capacity= WordSize * Number Of Words</p>
+</blockquote>
+<p><img src="2023-12-29-23-59-50.png" alt=""></p>
+<ul>
+<li>Faster access time,greater cost per bit</li>
+<li>Greater capacity,smaller cost per bit</li>
+<li>Greater capacity,slower access time</li>
+</ul>
+<p>寻址时间期望：</p>
+<blockquote>
+<p>T=T1 * H + (T1+T2)*H
+H:cache命中概率，T1：cache访问时间 T2:Memory访问时间</p>
+</blockquote>
+<h3 id="cache-read-operation">cache read operation:</h3>
+<ol>
+<li>CPU requests contents of memory location</li>
+<li>Check cache for this data</li>
+<li>If present,get from cache(cache hit)</li>
+<li>If not present, access main memory for required block(cache miss)</li>
+<li>allocate cache line</li>
+<li>load required $\color{red}{block}$ to cache</li>
+<li>Then deliver from cache to CPU</li>
+</ol>
+<h3 id="43-mapping-function">4.3 Mapping Function</h3>
+<p><img src="2023-12-30-19-01-16.png" alt=""></p>
+<blockquote>
+<p>the capacity of a line in cache is as same as a block of the Memory
+• Cache lines &lt; main memory blocks</p>
+</blockquote>
+<pre class="hljs"><code><div>• Main memory
+        —2n addressable words
+        —Unique n bit address
+        —Consists of M blocks (K words each)
+• Cache
+        —Consists of C lines
+        —Each line = K words + Tag + Control bits (not shown)
+        —C&lt;&lt;M
+        —Tag identifies stored block
+</div></code></pre>
+<pre class="hljs"><code><div>Cache Read Operation – overview:
+    • CPU requests contents of memory location
+    • Check cache for this data
+    • If present, get from cache (fast)
+    • If not present, access main memory for required block
+    • Allocate cache line 
+    • Load required block to cache
+    • Then deliver from cache to CPU
+</div></code></pre>
+<h4 id="direct-mapping-function">Direct Mapping function</h4>
+<p>Each block of main memory maps to only one cache line
+<img src="2023-12-30-19-22-24.png" alt="">
+• One Block = $2^w$ bytes( or words)</p>
+<pre class="hljs"><code><div>• Least significant w bits identify a unique word
+• Remaining s bits specify one memory block
+• Line field identify one of the m=2r lines of the cache
+• s = r (cache line field) + s-r (tag)
+</div></code></pre>
+<p><img src="2023-12-30-19-21-57.png" alt=""></p>
+<h4 id="associative-mapping-function">Associative Mapping function</h4>
+<p><img src="2023-12-30-19-27-25.png" alt=""></p>
+<pre class="hljs"><code><div>• A block can be loaded into any line
+• Memory address = tag + word
+• Tag uniquely identifies block of memory
+• Every line’s tag is examined for a match
+• Cache searching gets expensive
+</div></code></pre>
+<p><img src="2023-12-30-19-28-39.png" alt=""></p>
+<h4 id="set-associative-mapping-function">Set Associative Mapping function</h4>
+<p><img src="2023-12-30-19-29-40.png" alt=""></p>
+<pre class="hljs"><code><div>• Cache is divided into v sets (v =2d)
+• k lines/set (k-way set associative mapping)
+• A given block maps to any line in a given set
+</div></code></pre>
+<p><img src="2023-12-30-19-32-20.png" alt="">
+<img src="2023-12-30-19-32-46.png" alt=""></p>
+<p><big>the relationship among the three mapping function</big>:</p>
+<p>set associative mapping is general and include the other two mappinng methods,if the set size is a line, it is direct mapping, and if a set include all the lines of the cache,it is associative mapping</p>
+<blockquote>
+<p>即组关联中高速缓存中的块映射到唯一的组内，然后在组内和全相联一样随机映射，所以当组的大小为1行时，等于直接映射，当组的大小等于高速缓存大小时，等于全相联映射</p>
+</blockquote>
+<h3 id="replacement-algrithm">Replacement Algrithm</h3>
+<p>Direct mapping</p>
+<pre class="hljs"><code><div>• No choice
+• Each block only maps to one line
+• Replace that line
+</div></code></pre>
+<p>Associative &amp; Set Associative</p>
+<pre class="hljs"><code><div>• Least recently used (LRU)
+    —In cache longest with no reference
+    —e.g. in 2 way set associative, each line includes 
+    a USE bit; for fully associative cache, maintain a 
+    list of line index, move the referenced line to 
+    the front, replace the back of the list
+• First in first out (FIFO)
+    —In cache longest
+• Least frequently used (LFU)
+    —Has fewest hits
+• Random
+    —Slightly inferior to usage based algorithms
+</div></code></pre>
+<h3 id="write-policy">Write Policy</h3>
+<p><big>write through</big></p>
+<pre class="hljs"><code><div>• All writes go to main memory as well as 
+cache
+• CPU can monitor main memory traffic to 
+keep cache up to date
+• Disadvantages
+    —Lots of traffic
+    —Slows down writes
+</div></code></pre>
+<p><big>write back</big></p>
+<pre class="hljs"><code><div>• Updates initially made in cache only
+• Update occurs  Set dirty bit, or use bit
+• I/O access main memory through cache
+• May cause potential bottleneck
+</div></code></pre>
+<p><img src="2023-12-30-20-17-27.png" alt=""></p>
+<h2 id="%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0-instruction-sets-characteristics-and-functions">第十二章 Instruction Sets: Characteristics And Functions</h2>
+<ul>
+<li><input type="checkbox" id="checkbox3"><label for="checkbox3">已复习</label></li>
+</ul>
+<h3 id="elements-of-an-instruction">Elements of an instruction</h3>
+<p>The elements of a machine instruction:</p>
+<pre class="hljs"><code><div>• Operation code (Op code)
+    —Operations to be performed (binary code)
+    —Do this
+• Source operand reference
+    —Operands that are inputs for the operation
+    —To this
+• Result operand reference
+    —Put the answer here
+• Next instruction reference
+    —Where to fetch the next instruction
+    —When you have done that, do this..
+</div></code></pre>
+<p>Instruction types：</p>
+<pre class="hljs"><code><div>• Data processing : Arithmetic and logic instructions
+• Data storage : Movement of data into or out of register and or memory locations
+• Data movement : I/O instructions 
+• Control : Test and branch instructions
+</div></code></pre>
+<p>Number of Addresses：</p>
+<ul>
+<li>4 addresses：</li>
+</ul>
+<blockquote>
+<p>2 source operands + 1 destination operand + next instruction</p>
+</blockquote>
+<ul>
+<li>3 addresses:</li>
+</ul>
+<blockquote>
+<p>Next instruction reference is implicit
+Operand 1, Operand 2, Result
+Not common,Needs relatively long words to hold everything</p>
+</blockquote>
+<ul>
+<li>2 addresses:</li>
+</ul>
+<blockquote>
+<p>One address doubles as operand and result</p>
+</blockquote>
+<ul>
+<li>1 addresses:</li>
+</ul>
+<blockquote>
+<p>Implicit second address
+Usually a register (accumulator)</p>
+</blockquote>
+<ul>
+<li>0 addresses:</li>
+</ul>
+<blockquote>
+<p>All addresses implicit
+Uses a stack</p>
+</blockquote>
+<p><mark><strong>three places for storing</mark></strong>:</p>
+<ul>
+<li>Register</li>
+<li>Start of called procedure</li>
+<li>Top of stack</li>
+</ul>
+<p>general categories of data：</p>
+<pre class="hljs"><code><div>• Address（地址）
+• Numbers（数字）
+• Characters（字符）
+• Logic data（逻辑数据）
+</div></code></pre>
+<h3 id="procedure-call">procedure call</h3>
+<p><img src="2023-12-30-20-46-09.png" alt="">
+<img src="2023-12-30-20-46-41.png" alt=""></p>
+<h3 id="122-expression-explanation">12.2 Expression explanation</h3>
+<p><img src="2023-12-30-20-45-23.png" alt="">
+has higher priority than the stack top then push the operator ,otherwise,pop stack pop</p>
+<h2 id="%E7%AC%AC%E5%8D%81%E4%B8%89%E7%AB%A0-instruction-sets-addressing-modes-and-formats">第十三章 Instruction Sets: Addressing Modes And Formats</h2>
+<p>Instruction Formats:</p>
+<ul>
+<li>layout of bits in an instruction</li>
+<li>includes opcode</li>
+<li>includes(implicit or explicit) operands</li>
+<li>indicates addressing mode for operand</li>
+<li>usually more than one instruction format in an instruction set</li>
+</ul>
+<ul>
+<li><input type="checkbox" id="checkbox4"><label for="checkbox4">已复习</label></li>
+</ul>
+<p><img src="2023-12-30-20-54-06.png" alt="">
+<img src="2023-12-30-21-06-59.png" alt=""></p>
+<h3 id="displacement-addressing">Displacement Addressing</h3>
+<p>three of the most common uses of displacement addressing:</p>
+<ol>
+<li>Relative addressing:
+EA = (PC) + I +Displacement</li>
+</ol>
+<blockquote>
+<p>地址等于当前指令pc指令计数寄存器的地址加上一条指令长度（即下一条指令的地址）再加上地址偏移</p>
+</blockquote>
+<ol start="2">
+<li>
+<p>Base-register addressing:</p>
+<pre class="hljs"><code><div>• A holds displacement
+• R holds pointer to base address (main memory address)
+• R may be explicit or implicit
+</div></code></pre>
+</li>
+<li>
+<p>Indexing(also called autoindexing):</p>
+<pre class="hljs"><code><div> • A = base
+ • R = displacement
+ • EA = A + (R)
+ • Good for accessing arrays and iterative task
+     —Autoindexing
+     —EA = A + (R)
+     —(R) &lt;—— (R) + 1
+</div></code></pre>
+</li>
+</ol>
+<ul>
+<li>Conbine indirect and displacement</li>
+</ul>
+<ol>
+<li>postindexing：
+<blockquote>
+<p>—Indexing performed after indirection
+即偏移在间接寻址之后
+—EA = (A) + (R)</p>
+</blockquote>
+</li>
+<li>preindexing：
+<blockquote>
+<p>—Indexing performed before indirection
+即偏移在间接寻址之前
+—EA = (A+(R))</p>
+</blockquote>
+</li>
+</ol>
+<h3 id="instruction-length">Instruction length:</h3>
+<ul>
+<li>most basic design issue</li>
+<li>affected by and affects:<pre class="hljs"><code><div>memory size
+memory organization
+bus structure
+cpu complexity
+cpu speed
+</div></code></pre>
+</li>
+<li>determines the computer's richness and flexibility</li>
+</ul>
+<h2 id="%E7%AC%AC%E5%8D%81%E5%9B%9B%E7%AB%A0-processor-structure-and-function">第十四章 Processor Structure And Function</h2>
+<ul>
+<li><input type="checkbox" id="checkbox5"><label for="checkbox5">已复习</label></li>
+</ul>
+<p><strong>Register organization</strong>:
+Two categories:</p>
+<ol>
+<li>User-visible registers:Minimize main memory references by optimizing use of registers:</li>
+</ol>
+<ul>
+<li>general purpose</li>
+<li>data</li>
+<li>address</li>
+<li>condition codes</li>
+</ul>
+<ol start="2">
+<li>Control and status registers:control the operations of the processor and the execution of programs:</li>
+</ol>
+<ul>
+<li>PC,IR,MAR,MBR</li>
+<li>Program status word(PSW)</li>
+</ul>
+<p>The  PSW typically contains codes plus other status imformation ，include：Sign，Zero，Carry，Equal，Overflow，Interrupt enable/disable，supervisor</p>
+<h3 id="144-instruction-processing">14.4 instruction processing</h3>
+<p><mark>Two Stage insstruction pipeline</mark>:
+Fetch  and  Execute
+<strong>why does two stages not double the execution speed</strong>:</p>
+<pre class="hljs"><code><div>1. Execution time longer than fetch time
+2. Conditional branch makes next instruction address unknown.
+</div></code></pre>
+<ol>
+<li><mark><strong>Fetch instruction(FI)</mark></strong>:Read the next expected instruction into a buffer</li>
+<li><mark><strong>Decode instruction(DI)</mark></strong>:Determine the opcode and the operand specifiers.</li>
+<li><mark><strong>Calculate operation(CO)</mark></strong>:Calculate the effective address of each source operand,This may involve displacement,register indirect,indirect,or other forms of address calculation.</li>
+<li><mark><strong>Fetch operands(FO)</mark></strong>:Fetch each operand from memory. Operands in registers need not be fetched</li>
+<li><mark><strong>Execute instruction(EI)</mark></strong>:Perform the indicated operation and store the result,if any, in the specified destination operand location</li>
+<li><mark><strong>Write operand(WO)</mark></strong>:Store the result in memory.</li>
+</ol>
+<p><img src="2023-12-30-21-51-28.png" alt=""></p>
+<blockquote>
+<p>可以看到当branch指令到了EI执行阶段会清空流水线也就是让发生跳转后错误执行的顺序指令清空</p>
+</blockquote>
+<p><mark>指令流水线的加速比因子（The speedup factor） </mark><br>
+Sk = $T1,n \over T k,n$ = $nk \over k+(n+1)$
+the limit of the Sk is <mark> K </mark></p>
+<p>three types of data hazards:</p>
+<ul>
+<li>Read after write(RAW) —— true data dependencty</li>
+<li>Write after read(WAR) —— antidependency</li>
+<li>Write after write(WAW) —— output dependency</li>
+</ul>
+<h3 id="dealing-with-branches">Dealing with Branches</h3>
+<ul>
+<li>Multiple streams（多流）</li>
+<li>Prefetch branch target(预取分支目标)</li>
+<li>Loop buffer（循环缓存）</li>
+<li>Branch prediction (分支预测):<pre class="hljs"><code><div> • Predict never taken
+ • Predict always taken
+ • Predict by opcode
+ • Taken/not taken switch
+ • Branch history table
+</div></code></pre>
+</li>
+<li>Delayed branch(延迟分支)</li>
+</ul>
+<p>for one bit predict switch,when execute a loop,it will cause two errors total(the enter and the exit)</p>
+<blockquote>
+<p>对于单比特的分支预测，执行循环代码到循环结束一共会出现两次预测错误（进入循环时和离开循环时）</p>
+</blockquote>
+<img src="./2023-12-30-22-00-36.png" width = "630" height = "430" alt="图片名称" align=center />
+<h2 id="%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-reduced-instruction-set-computers-risc">第十五章 Reduced instruction set computers (RISC)</h2>
+<ul>
+<li><input type="checkbox" id="checkbox6"><label for="checkbox6">已复习</label>
+RISC (Reduced instruction set computers 简单指令集计算机)
+CISC（complex instruction set computer 复杂指令集计算机）
+<strong>RISC Key features</strong>:</li>
+</ul>
+<ul>
+<li>Large number of general purpose registers and/Or use of compiler technology to optimize register use</li>
+<li>Limited and simple instruction set</li>
+<li>Emphasis on optimizing instruction pipeline</li>
+</ul>
+<p>Charasteristics of Reduced Instructions Set Architecture:</p>
+<ul>
+<li>One instruction per cycle</li>
+<li>Register-to-register operations</li>
+<li>Simple addressing modes</li>
+<li>Simple instruction formats</li>
+</ul>
+<h3 id="151-register-window">15.1 register window</h3>
+<p>The window is divided into three fixed-size areas:</p>
+<p><mark><strong>Parameter registers</strong></mark> hold parameters passed down from the procedure that called the current procedure and hold results to be passed back up.</p>
+<p><mark><strong>Local registers</mark></strong> are used for local variables, as assigned by the compiler.</p>
+<p><mark><strong>Temporary registers</strong></mark> are used to exchange parameters and results with the next lower level(procedure called by current procedure).The temporary registers at one level are physically the same as the parameter registers at the next lower level.</p>
+<blockquote>
+<p>参数寄存器用来保存调用当前过程的过程（即父过程）向下传递的参数和将被返回的结果。
+局部寄存器用于局部变量，这由编译器指派。
+临时寄存器用于当前过程与下一过程（被当前过程调用的过程，即子过程）交换参数的结果。</p>
+</blockquote>
+<p><mark><big>The temporary registers at one level are physically the same as the parameter registers at the next lower level.</big><mark></p>
+<blockquote>
+<p>某一级的临时寄存器与下一级的参数寄存器是物理同一的，这种重叠允许不用实际移动数据就能传递参数。
+两个不同级的寄存器窗口在物理上是完全不同的。也就是说，第J级的参数和局部寄存器与第J+1的局部寄存器和临时寄存器是不相交的。</p>
+</blockquote>
+<p><img src="2023-12-29-22-20-38.png" alt=""></p>
+<p><img src="2023-12-29-22-22-44.png" alt=""></p>
+<p><img src="2024-01-03-23-20-46.png" alt="">
+• Nodes are symbolic registers
+• Edges depict overlap in program fragment
+• Try to color the graph with n colors</p>
+<pre class="hljs"><code><div>—n is the number of real registers
+—Adjacent nodes have different colors
+</div></code></pre>
+<p>• Nodes that can not be colored are placed in
+memory</p>
+<h3 id="sparc">SPARC</h3>
+<p>(scalable processor architecture,可扩展处理器体系结构)</p>
+<img src="./2023-12-29-22-31-19.png" width = "630" height = "430" alt="图片名称" align=center />
+<big><strong>
+A SPARC implementation has K register windows. What is the number N of physical registers?
+N=8+16k
+</big><strong>
+<hr>
+<img src="./2023-12-29-22-34-18.png" width = "630" height = "430" alt="图片名称" align=center />
+<hr>
+<h3 id="153-risc-pipelining">15.3 RISC PIPELINING</h3>
+<p>Most instructions are register to register, and an instruction cycle has the following two stages:
+I: Instruction fetch.
+E: Execute. Performs an ALU operation with register input and output.</p>
+<hr>
+<p>For load and store operations, three stages are required:
+I: Instruction fetch.
+E: Execute. Calculates memory address.
+D: Memory. Register-to-memory or memory-to-register operation.</p>
+<img src="./2023-12-29-22-51-22.png" width = "630" height = "430" alt="图片名称" align=center />
+<img src="./2023-12-29-22-52-48.png" width = "630" height = "430" alt="图片名称" align=center />
+<img src="./2023-12-29-22-54-05.png" width = "630" height = "430" alt="图片名称" align=center />
+Data and branch dependencies reduce the over all execution rate   
+<p>Solution:
+• Code reorganization
+• Delayed branch:<mark>The branch does not take effect until after execution of following instruction</mark></p>
+<pre class="hljs"><code><div>  —This following instruction is the delay slot 
+</div></code></pre>
+<h4 id="delayed-branch">delayed branch</h4>
+<img src="./2023-12-29-23-02-25.png" width = "630" height = "430" alt="图片名称" align=center />
+<img src="./2023-12-29-22-58-13.png" width = "630" height = "430" alt="图片名称" align=center />
+<p>• Interchange of instructions works successfully for unconditional
+branches, calls, and returns
+• Be careful for conditional branches</p>
+<h4 id="delayed-load">delayed load</h4>
+<img src="./2023-12-29-22-59-26.png" width = "630" height = "430" alt="图片名称" align=center />
+<h4 id="loop-unrolling">loop unrolling</h4>
+<img src="./2023-12-29-23-01-09.png" width = "630" height = "430" alt="图片名称" align=center />
+<h2 id="%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0-instruction-level-parallesim-and-superscalar-process">第十六章 Instruction-Level Parallesim And Superscalar Process</h2>
+<ul>
+<li><input type="checkbox" id="checkbox7"><label for="checkbox7">已复习</label></li>
+</ul>
+<p><mark>superscalar</mark>  is common instructions can be initiated simultaneously and executed independently.
+<mark>superpipeline</mark> is capable of performing two pipeline stages per clock cycle.</p>
+<h3 id="161-constraints">16.1 Constraints</h3>
+<p><mark><strong>Instruction-level parallelism</strong></mark> refers to the degree to which, on average,the instructions of a program can be executed in parallel.</p>
+<blockquote>
+<p>指令集并行性指的是程序指令能并行执行的程度。</p>
+</blockquote>
+<p>5 constraints：</p>
+<ol>
+<li><strong>(True data dependency)真实数据相关性</strong>:RAW(Read after Write) or Flow dependency</li>
+<li><strong>(procedual dependency)过程相关性</strong>:The instructions following a branch (taken or not taken) have a procedural dependency on the branch and cannot be executed until the branch is executed.</li>
+<li><strong>(resauce dependency)资源冲突</strong>:a competition of two or more instructions for the same resource at the same time.</li>
+<li><strong>(output dependency)输出相关性</strong>：WAW(write after write)</li>
+<li><strong>(antidependency)反相关性</strong>:WAR(Write after Read)</li>
+</ol>
+<h3 id="162-design-issues">16.2 Design Issues</h3>
+<p><strong>Instruction-level parallelism</strong> exists when instructions in a sequence are dependent and thus can be executed in parallel by overlapping.</p>
+<blockquote>
+<p>指令并行性存在于 指令序列中的指令是独立的，并因此能通过重叠来并行执行时。</p>
+</blockquote>
+<p><mark>The degree of instruction-level parallelism is determined by the frequency of true data dependencies and procedural dependencies in the code，and operation latency</mark> ，and these factors are dependent on the instruction set architecture and on the application.</p>
+<blockquote>
+<p>代码中的真实数据相关性和过程相关性的频繁程度决定了指令级的并行性。这些因素本身又取决于指令集体系和应用程序。</p>
+</blockquote>
+<p><mark><strong>Machine parallelism</strong> is a machine of the ability of the processor to take advantage of instruction-level parallelism</mark>
+Machine parallelism is determined by the number of instructions that can be fetched and executed at the same time(the number of parallel pipelines) and by the speed and sophistication of the mechanisms that the processor uses to find independent instructions.</p>
+<blockquote>
+<p>机器并行性是指处理器获取指令级并行性好处的能力程度。机器并行性由下面这些因素决定，它能同时取指和执行的指令数（并行流水线数），以及处理器用于找出独立指令所使用结构的速度及精巧程度。</p>
+</blockquote>
+<p><strong>instruction issue</strong> refer the process of initiating instruction execution in the processor's functional units and the term instruction.</p>
+<blockquote>
+<p>指令发射是指启动指令去处理器功能单元执行的过程</p>
+</blockquote>
+<p><strong>instruction-issue policy</strong> refer the protocol used to issue instructions.</p>
+<blockquote>
+<p>指令发射策略指启动指令执行时所采用的协议</p>
+</blockquote>
+<ul>
+<li>in-order issue with in-order completion</li>
+<li>in-order issue with out-of-order completion</li>
+<li>out-of-order issue with out-of-order completion</li>
+</ul>
+<p>for example:</p>
+<pre class="hljs"><code><div>              I1 requires two cycles to execute
+              I3 and I4 conflict for the same functional unit
+              I5 depends on the value produced by I4
+              I5 and I6 conflct for a functional unit
+</div></code></pre>
+<p><img src="2023-12-29-21-11-27.png" alt=""></p>
+<p><big>the purpose of an instruction window</big>:
+<mark>to decouple the decode and execute stages of the pipeline to allow out-of-order issue</mark></p>
+<blockquote>
+<p>For an out of order issue policy,the instruction window is a buffer that holds decoded instructions. These may be issued from the instruction window in the most convenient order</p>
+</blockquote>
+<p>Out-of-Order Issue Out-of-Order Completion</p>
+<pre class="hljs"><code><div>• Decouple decode pipeline from execution pipeline
+• Instruction window (a buffer) is used 
+• Can continue to fetch and decode until this buffer is full
+• Since instructions have been decoded, processor can look ahead
+• When a functional unit is available, an instruction(no conflict or dependency) can be execute
+</div></code></pre>
+<h3 id="163-register-renaming">16.3 Register Renaming</h3>
+<p>one method for traditional resource-conflict solution:duplication of resources
+<mark>register renaming</mark> : register are allocated dynamically by the processor hardware, and they are associated with the values needed by instructions at various points in time.
+for example:</p>
+<pre class="hljs"><code><div>                  I1 : R3b &lt;—— R3a op R5a
+                  I3 : R4b &lt;—— R3b + 1
+                  I5 : R3c &lt;—— R5a + 1
+                  I5 ：R7a &lt;—— R3c op R4b
+</div></code></pre>
+<p>Register renaming is used to fix the WAR and WAW.(output dependency and antidependency)</p>
+<h3 id="164-superscalar-execution">16.4 Superscalar Execution</h3>
+<p><img src="2023-12-29-21-27-21.png" alt="">
+The final step mentioned in the preceding paragraph is referred to as <strong>committing</strong> or <strong> retiring </strong></p>
+<p><mark>reasons for committing</mark> : the use of parallel,multiple pipelines,instructions may complete in an order different from that shown in the static program. Further ,the use of branch prediction and speculative execution means that some instructions may complete execution and then must be abandoned because the branch they present is not taken.</p>
+<blockquote>
+<p>superscalar uses more the branch prediction ，the simple processor uses the static prediction technique ， more sophisticated processors use dynamic branch prediction based on branch history analysis
+随着超标量的开发，更多采用分支预测技术。</p>
+</blockquote>
+<h2 id="%E7%AC%AC%E4%BA%8C%E5%8D%81%E7%AB%A0-control-unit-operation">第二十章 Control Unit Operation</h2>
+<ul>
+<li><input type="checkbox" id="checkbox8"><label for="checkbox8">已复习</label></li>
+</ul>
+<p><mark><strong>Memory address register（MAR）</strong></mark>: Is connected to the address lines of the system bus. It specifies the address in memory for a read or write operation.</p>
+<p><mark><strong>Buffer address register（MBR）</strong></mark>:Is connected to the data lines of the system bus. It contains the value to be stored in memory or the last value read from memory.</p>
+<p><mark><strong>Program counter（PC）</strong></mark>:Holds the address of the next instruction to be fetched.</p>
+<p><mark><strong>Instruction register（IR）</strong></mark>:Holds the last instruction fetched.</p>
+<h3 id="201-mirco-operations">20.1 Mirco-operations</h3>
+<p>THE fetch cycle:</p>
+<pre class="hljs"><code><div>              t1: MAR &lt;—— (PC)
+              t2: MBR &lt;—— Memory
+                  PC  &lt;—— (PC) + I
+              t3：IR  &lt;—— (MBR) 
+</div></code></pre>
+<p>THE Indirect Cycle:</p>
+<pre class="hljs"><code><div>              t1: MAR &lt;—— (IR(Address))
+              t2: MBR &lt;—— Memory
+              t3：IR(Address)  &lt;—— (MBR(Address))     
+</div></code></pre>
+<p>THE Interrupt Cycle:</p>
+<pre class="hljs"><code><div>              t1: MAR &lt;—— (PC)
+              t2: MBR &lt;—— Save_Address
+                  PC  &lt;—— Routine_Address
+              t3：Memorary  &lt;—— (MBR)     
+</div></code></pre>
+<p>THE Execute Cycle:</p>
+<pre><code>ADD R1,X:
+
+```masm
+              t1: MAR &lt;—— (IR(Address))
+              t2: MBR &lt;—— Memory
+              t3：R1  &lt;—— (R1) + (MBR)     
+```
+
+
+ISZ X:
+
+```masm
+              t1: MAR &lt;—— (IR(Address))
+              t2: MBR &lt;—— Memory
+              t2: MBR &lt;—— (MBR) + 1
+              t3：Memorary  &lt;—— (MBR)
+                  If ((MBR) = 0) then (PC &lt;—— (PC) + I)  
+```
+
+BSA X:
+
+```masm
+              t1: MAR &lt;—— (IR(Address))
+                  MBR &lt;—— (PC)
+              t2: PC  &lt;—— (IR(address))
+                  Memory &lt;—— （MBR）
+              t3：Memorary  &lt;—— (MBR)
+                  PC  &lt;—— (PC) + I
+```
+</code></pre>
+<center><mark><big>The instruction cycle</mark></big>
+<p><img src="2023-12-29-18-28-39.png" alt=""></center></p>
+<h3 id="control-of-the-processor">control of the processor</h3>
+<p><img src="2024-01-09-22-00-09.png" alt=""></p>
+<p>Basic functional elements of the processor(处理器的基本功能元件)</p>
+<ol>
+<li>ALU</li>
+<li>Registers</li>
+<li>Internal data paths 内部数据通路</li>
+<li>External data paths 外部数据通路</li>
+<li>Control unit</li>
+</ol>
+<p>the micro-operations categories:</p>
+<ul>
+<li>Transfer data from one register to another.</li>
+<li>Transfer data from a register to an external interface(e.g. system bus)</li>
+<li>Transfer data from an external interface to a register</li>
+<li>Perform an arithmetic or logic operation, using registers for input and output.</li>
+</ul>
+<p>The control unit performs two basic tasks:</p>
+<ul>
+<li><big>Sequencing(排序)</big>:The control unit causes the processor to step through a series of micro-operations in the proper sequence,based on the program being executed.</li>
+<li><big>Execution（执行）</big>:The control unit causes each micro-operation to be performed.</li>
+</ul>
+<h3 id="bigcontrol-signalsbig"><big>Control Signals:</big></h3>
+<hr>
+<p>Three types of control signals(三种控制信号)</p>
+<ol>
+<li>Activate an ALU function(激活ALU的功能)</li>
+<li>Activate a data path(激活数据通路)</li>
+<li>Signals on the external system bus or other external interface(通过系统总线或者其他外部接口传递来的信号)</li>
+</ol>
+<p>Control Unit inputs:</p>
+<ul>
+<li>
+<p><strong>Clock</strong>:The control unit causes one micro-operation to be performed during the execute cycle.</p>
+</li>
+<li>
+<p><strong>Instruction register</strong>:The opcode and addressing mode of the current instruction are to determine which micro-operations to perform during the execute cycle.</p>
+</li>
+<li>
+<p><strong>Flags</strong>:These are needed by the control unit to determine the status of the processor and the outcome of the previous ALU operations.</p>
+</li>
+<li>
+<p><strong>Control signals from control bus</strong>:These are two types:those that cause data to be moved from one register to another, and those that activate specific ALU functions.</p>
+</li>
+<li>
+<p><strong>Control signals within the processor</strong>:The control bus portion of the system bus provides signals to the control unit.</p>
+</li>
+<li>
+<p><strong>Control signals to control bus</strong>:These are also of two types: control signals to memory,and control signals to the I/O modules.</p>
+<p>翻译：</p>
+</li>
+</ul>
+<!-- ![](2023-12-29-19-19-33.png) -->
+<img src="./2023-12-29-19-19-33.png" width = "630" height = "267" alt="图片名称" align=center />
+<p>Output(输出):</p>
+<ol>
+<li><mark>Control signals within the processor</mark>: These are two types: those that cause data to be moved from one register to another, and those that activate specific ALU functions(处理器内的控制信号：这有两种类型：一种是导致数据从一个寄存器移动到另一个寄存器的信号，另一种是激活特定ALU功能的信号)</li>
+<li><mark>Control signals to control bus</mark>: These are also of two types: control signals to memory, and control signals to the I/O modules(控制总线的控制信号：这些信号也有两种类型：存储器的控制信号和I/O模块的控制信号)</li>
+</ol>
+<p>Control Unit Implementation 控制单元的实现:</p>
+<ol>
+<li>Two categories:(两种类型)</li>
+</ol>
+<ul>
+<li>Hardwired implementation(硬连线实现)</li>
+<li>Microprogrammed implementation(微编程实现)</li>
+</ul>
+<pre class="hljs"><code><div>In a hardwired implementation, the control unit is essentially a state machine circuit(在硬接线实现中，控制单元本质上是一个状态机电路)
+Its input logic signals are transformed into a set of output logic signals, which are the control signals(它的输入逻辑信号被转换成一组输出逻辑信号，即控制信号)
+控制信号为1或者0，进行处理，不能够直接拿过来使用
+</div></code></pre>
+<img src="./2023-12-29-19-12-14.png" width = "600" height = "400" alt="图片名称" align=center />
+<center>常见的微操作对应控制信号:</center>
+<img src="./2023-12-29-19-35-26.png" width = "676" height = "412" alt="图片名称" align=center />
+<center>  </center>  
+<h3 id="centerinternal-processor-organization%E5%86%85%E9%83%A8%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84center"><center>Internal Processor Organization(内部总线结构):</center></h3>
+<img src="./2023-12-29-19-39-54.png" width = "725" height = "547" alt="图片名称" align=center />
+<!-- ![](2023-12-29-19-35-26.png)
+
+![](2023-12-29-19-39-54.png) -->
+<h2 id="%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%80%E7%AB%A0-microprogrammed-control">第二十一章 Microprogrammed Control</h2>
+<ul>
+<li><input type="checkbox" id="checkbox9" checked="true"><label for="checkbox9">已复习</label></li>
+</ul>
+<h3 id="211-basic-concepts">21.1 BASIC CONCEPTS</h3>
+<p><mark><big>microprogrammed control unit</big></mark>  is used in many CISC processors</p>
+<p>Known as a <big>microprogramming language</big> . Each line describes a set of micro-operations occurring at one time and is known as a microinstruction . A sequence of instructions is known as a microprogram , on <big>firmware</big>.</p>
+<blockquote>
+<p>翻译：<big>微程序设计语言</big>，每行描述一个时间内出现的一组微操作，并称呼为一条微指令，这种微指令序列被称为<big>微程序</big>或<big>固件</big></p>
+</blockquote>
+<p>Horizional microinstruction (水平微指令)，control word as follows:</p>
+<p>one bit for each internal processor control line and one bit for each system bus control line . and a condition field indicating the condition under which there should be a branch, and there is a field with the address of the micro-instruction to be executed next when a branch is taken.interated as follows:</p>
+<ol>
+<li>To execute this microinstruction , turn on all the control lines indicated by a 1bit ; leave off all control lines indicated by a 0 bit. The resulting control signals will cause one or more micro-operations to be performed.</li>
+<li>If the condition indicated by the condition bits is false ,execute the next microinstruction in sequence.</li>
+<li>If the condition indicated by the condition bits is true, the next microinstruction to be executed is indicated in the address field.</li>
+</ol>
+<p><mark>Horizonal Microinstruction</mark></p>
+<pre class="hljs"><code><div>    • Each micro-instruction specifies many different 
+    micro-operations to be performed in parallel
+      —One bit for each internal processor control line
+      —One bit for each system bus control line
+      —A condition field
+      —A field with the address to be executed next when a branch is taken
+</div></code></pre>
+<p><img src="2024-01-04-23-21-54.png" alt=""></p>
+<p><mark>Vertical Microinstruction</mark></p>
+<pre class="hljs"><code><div>    • Each micro-instruction specifies single (or few) 
+    micro-operations to be performed
+      —Function codes: translates by decoder into individual 
+    control signals
+      —A condition field
+      —A field with the address to be executed next when a 
+    branch is taken
+</div></code></pre>
+<p><img src="2024-01-04-23-18-33.png" alt=""></p>
+<h3 id="211-microprogrammed-control-unit">21.1 Microprogrammed control unit</h3>
+<h4 id="functions-of-the-control-unit">functions of the control unit</h4>
+<ol>
+<li>To execute an instruction, the sequencing logic unit issues a  READ command to the control memory.</li>
+<li>The word whose address is specified in the control address register is read into the control buffer register.</li>
+<li>The consist of the control buffer register generates control signals and next address imformation for the sequencing logic unit.</li>
+<li>The sequencing logic unit loads a new address into the control address register based on the next address information from the control buffer register and the ALU flags.
+<img src="2023-12-31-17-05-18.png" alt="">
+<img src="2023-12-31-17-05-47.png" alt=""></li>
+</ol>
+<blockquote>
+<p>the upper decoder translate the opcode of IR into a control memory address. The lower decoder is not used for horizonal microinstructions but for vertical instructions, to translate the code into individual control signals</p>
+</blockquote>
+<h3 id="212-microinstruction-sequencing">21.2 MICROINSTRUCTION SEQUENCING</h3>
+<p>two basic tasks of a microprogrammed control unit:</p>
+<ol>
+<li><mark><big>Microinstruction sequence（微指令排序）</big></mark>:Get the next microinstruction from the control memory.</li>
+<li><mark><big>microprogrammed control unit（微指令执行）</big></mark>:Generage the control signals needed to execute the microinstruction.</li>
+</ol>
+<!-- <p style="text-align:center">居中对齐</p> -->
+<h4 id="address-generation">Address Generation</h4>
+<p><mark>the address of the next microinstruction to be executed is in one of these catagories:</mark></p>
+<ul>
+<li>Determined by instruction register(IR code)</li>
+<li>Next sequential address</li>
+<li>Branch (address field in the microinstruction)</li>
+</ul>
+<h5 id="variable-addressing">variable addressing</h5>
+<p>with two different microinstruction formats. one bit designates which format is being used.one format the remaining bits are used to activate control signals.In the other format.some bits drive the branch logic module,and the remaining bits provide the branch address.</p>
+<p><img src="2024-01-04-23-14-25.png" alt="">
+<img src="2024-01-04-23-16-30.png" alt=""></p>
+<!-- 让表格居中显示的风格 -->
+<style>
+.center 
+{
+  width: auto;
+  display: table;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+<p>$\color{blue}{地址生成(显式和隐式)}$</p>
+<div class="center">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Explicit</th>
+<th style="text-align:center">Implicit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Two-field</td>
+<td style="text-align:center">Mapping</td>
+</tr>
+<tr>
+<td style="text-align:center">Unconditional branch</td>
+<td style="text-align:center">Addition</td>
+</tr>
+<tr>
+<td style="text-align:center">Conditional branch</td>
+<td style="text-align:center">Residual control</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>Specific Encoding Techniques</strong></p>
+<ul>
+<li>Microinstruction organized as set of fields</li>
+<li>Each field contains a code</li>
+<li>A code activates one or more control signals</li>
+<li>Encoded microinstruction format design(Functional encoding , Resaurce encoding)</li>
+<li>Direct/indirect encoding(Indirect: one field is used to determine the interpretation of another field)</li>
+</ul>
+
+</body>
+</html>
